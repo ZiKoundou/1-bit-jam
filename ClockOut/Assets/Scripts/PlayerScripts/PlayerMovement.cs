@@ -6,19 +6,15 @@ using UnityEngine.SocialPlatforms;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Player Components")]
-    [SerializeField] Rigidbody2D rb;
+    private Rigidbody2D rb;
     [Header("Movement Variables")]
     [SerializeField] float speed = 5;
     private Vector2 movement;
-    public Vector3 mouseWorldPos;
-    Animator animator;
-
     Vector3 localScale;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -26,18 +22,8 @@ public class PlayerMovement : MonoBehaviour
         movement = context.ReadValue<Vector2>();
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (movement != Vector2.zero)
-        {
-            animator.SetBool("isWalking", true);
-
-        }
-        else
-        {
-            animator.SetBool("isWalking", false);
-        }
-
         if(movement.x < 0)
         {
             FlipLeft();
@@ -47,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
             FlipRight();
         }
         Move();
-        FindMousePosition();
     }
 
     void Move()
@@ -70,10 +55,5 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = localScale;
     }
     
-    void FindMousePosition()
-    {
-        Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
-        mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
-        mouseWorldPos.z = 0f; // Ensure 2D plane
-    }
+
 }
