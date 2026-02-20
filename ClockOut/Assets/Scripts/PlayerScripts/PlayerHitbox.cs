@@ -7,21 +7,12 @@ public class PlayerHitbox : MonoBehaviour
     
     [SerializeField] private BoxCollider2D hitboxCollider;
     [SerializeField] private float hitboxDuration;
+    public float damageAmount = 1f;
+    public float knockbackForce = 10f;
     public event Action OnAttack;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
- 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void Fire(InputAction.CallbackContext context)
     {
+        if (!context.performed)return;
         OnAttack?.Invoke();
         StartCoroutine(Meleee());
 
@@ -32,5 +23,15 @@ public class PlayerHitbox : MonoBehaviour
         hitboxCollider.enabled = true;
         yield return new WaitForSeconds(hitboxDuration);
         hitboxCollider.enabled = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if(collision.CompareTag("Enemy"))
+        {
+            // collision.GetComponent<Health>().TakeDamage(damageAmount);
+            collision.GetComponent<Knockback>().ApplyKnockback(transform.position, knockbackForce);
+        }
     }
 }
