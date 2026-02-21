@@ -54,7 +54,6 @@ public class Health : MonoBehaviour
     {
         Debug.Log("invoking the death event");
         OnDeath?.Invoke();
-        Destroy(gameObject);
     }
     #endregion
 

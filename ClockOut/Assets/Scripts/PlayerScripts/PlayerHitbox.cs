@@ -30,7 +30,7 @@ public class PlayerHitbox : MonoBehaviour
 
         if(collision.CompareTag("Enemy"))
         {
-            // collision.GetComponent<Health>().TakeDamage(damageAmount);
+            collision.GetComponent<Health>().TakeDamage(damageAmount);
             collision.GetComponent<Knockback>().ApplyKnockback(transform.position, knockbackForce);
         }
     }
