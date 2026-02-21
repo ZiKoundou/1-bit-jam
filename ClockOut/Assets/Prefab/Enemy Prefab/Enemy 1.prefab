@@ -386,8 +386,8 @@ GameObject:
   - component: {fileID: 6904347513810543371}
   - component: {fileID: 2334818852051249063}
   - component: {fileID: 8483121727075299524}
-  m_Layer: 8
-  m_Name: Enemy
+  m_Layer: 0
+  m_Name: Enemy 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -462,32 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a6ecf26b9c67c449b85f5acfc2b991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Knockback
-  knockbackSpeed: 16
-  knockbackDuration: 0.15
-  knockbackFalloff:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.03344345
-      value: 1.0082703
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.9866333
-      value: 0.0086250305
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  duration: 0.05
 --- !u!114 &8988594544900284491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,7 +507,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

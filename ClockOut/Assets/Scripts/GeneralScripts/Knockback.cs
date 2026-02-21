@@ -1,37 +1,49 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-
 public class Knockback : MonoBehaviour
 {
     private EnemyAi enemyAi;
-    private Rigidbody2D rb;
-    public float duration = 0.2f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private PlayerMovement playerMovement;
+
+    [SerializeField] private float knockbackSpeed = 8f;
+    [SerializeField] private float knockbackDuration = 0.25f;
+    [SerializeField] private AnimationCurve knockbackFalloff; // optional: 1→0 curve for nicer easing
+    private Vector2 knockbackVelocity;
+    private float knockbackTimer;
+
+    void Awake()
     {
-        
-        rb = GetComponent<Rigidbody2D>();
         enemyAi = GetComponent<EnemyAi>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     public void ApplyKnockback(Vector3 source, float force)
     {
         Vector2 direction = (transform.position - source).normalized;
-        StartCoroutine(KnockbackCoroutine(direction, force));
+        knockbackVelocity = direction * force;   // force = e.g. 5–12 feels good
+        knockbackTimer    = knockbackDuration;
+
+        if (enemyAi) enemyAi.stop = true;
+        if (playerMovement) playerMovement.DisableMovement();
     }
 
-    IEnumerator KnockbackCoroutine(Vector2 direction, float force)
+    void Update()
     {
-        if(enemyAi)enemyAi.stop = true;
-        
+        if (knockbackTimer > 0)
+        {
+            knockbackTimer -= Time.deltaTime;
 
-        rb.linearVelocity = Vector2.zero; // reset existing movement
-        rb.AddForce(direction * force, ForceMode2D.Impulse);
+            float t = knockbackTimer / knockbackDuration;
+            // optional: nicer easing
+            float strength = knockbackFalloff != null ? knockbackFalloff.Evaluate(1-t) : t;
 
-        yield return new WaitForSeconds(duration);
+            transform.position += (Vector3)(knockbackVelocity * strength * Time.deltaTime);
 
-        rb.linearVelocity = Vector2.zero;
-        if(enemyAi)enemyAi.stop = false;
+            if (knockbackTimer <= 0)
+            {
+                if (enemyAi) enemyAi.stop = false;
+                if (playerMovement) playerMovement.EnableMovement();
+            }
+        }
     }
 }

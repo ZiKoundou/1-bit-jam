@@ -21,17 +21,19 @@ public class Health : MonoBehaviour
     }
     #region Methods
     
-    public void TakeDamage(float amount)
+    public bool TakeDamage(float amount)
     {
-        if (isInvincible) return;
-        if(amount <= 0) return;
+        if (isInvincible) return false;
+        if(amount <= 0) return false;
         currentHealth = Mathf.Max(currentHealth - amount, 0f);
         OnDamaged?.Invoke();
 
         if (currentHealth <= 0f){
             Die();
+            return true;
         }
         StartCoroutine(Invincibility());
+        return false;
     }
 
     IEnumerator Invincibility()

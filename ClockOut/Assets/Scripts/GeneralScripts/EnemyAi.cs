@@ -60,7 +60,7 @@ public class EnemyAi : MonoBehaviour
     void Attack()
     {
         player.GetComponent<Health>().TakeDamage(damage);
-        player.GetComponent<Knockback>().ApplyKnockback(transform.position,knockbackForce);
+        // player.GetComponent<Knockback>().ApplyKnockback(transform.position,knockbackForce);
     }
     
 }

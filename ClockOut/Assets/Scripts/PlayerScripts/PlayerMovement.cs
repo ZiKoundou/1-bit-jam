@@ -14,7 +14,10 @@ public class PlayerMovement : MonoBehaviour
     private float currentSpeed;
     private Vector2 movement;
     [SerializeField]private PlayerHitbox playerAttack;
-    [SerializeField] private float duration = 0.10f;
+    [SerializeField] private float attackMoveDuration = 0.10f;
+    [SerializeField] private float secondaryMoveDuration = 0.10f;
+    
+    private bool canMove = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,11 +28,13 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         playerAttack.OnAttack += AttackSpeed;
+        playerAttack.OnSecondary += AttackSpeed;
     }
 
     private void OnDisable()
     {
         playerAttack.OnAttack -= AttackSpeed; // Always unsubscribe!
+        playerAttack.OnSecondary += AttackSpeed;
     }
     public void Move(InputAction.CallbackContext context)
     {
@@ -43,12 +48,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        rb.MovePosition(rb.position + movement * currentSpeed * Time.fixedDeltaTime);
+        if(!canMove) return;
+        rb.linearVelocity = movement * currentSpeed;
     }
     private void AttackSpeed()
     {
-        StartCoroutine(ChangeInSpeed(duration));
+        StartCoroutine(ChangeInSpeed(attackMoveDuration));
     }
+    private void SecondarySpeed()
+    {
+        StartCoroutine(ChangeInSpeed(secondaryMoveDuration));
+    }
+
 
     IEnumerator ChangeInSpeed(float duration)
     {
@@ -56,6 +67,14 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(duration);
         currentSpeed = baseSpeed;
     }
+    public void EnableMovement()
+    {
+        canMove = true;
+    }
 
+       public void DisableMovement()
+    {
+        canMove = false;
+    }
 
 }
