@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackHitbox
   damage: 1
-  knockbackForce: 25
+  knockbackForce: 30
   boxCollider: {fileID: 0}
   isSecondaryAttack: 0
 --- !u!1 &346578631
