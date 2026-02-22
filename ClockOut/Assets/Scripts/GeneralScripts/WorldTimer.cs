@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 public class WorldTimer : MonoBehaviour
 {
     [Header("Timer Settings")]
@@ -11,6 +12,9 @@ public class WorldTimer : MonoBehaviour
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private Image progressBar;
+    [SerializeField] private RectTransform rectTransform;
+    [SerializeField] private float timeAddDuration = 1;
+    [SerializeField] private float timeAddScaleUp = 0.2f;
     public static WorldTimer Instance;
     private float currentTimeMinutes;
     public bool IsGameOver { get; private set; }
@@ -34,7 +38,6 @@ public class WorldTimer : MonoBehaviour
 
     }
 
-
     void UpdateUI()
     {
         float displayTimeMinutes = startingTimeMinutes + timeProgress;
@@ -49,6 +52,19 @@ public class WorldTimer : MonoBehaviour
         // Progress bar
         progressBar.fillAmount = Mathf.Clamp01(timeProgress / goalTimeMinutes);
     }
+    public void AdvanceTimer(float bonusSeconds)
+    {
+        timeProgress += bonusSeconds / 60f;
+        StartCoroutine(TimeAddAnimation(bonusSeconds/90f)); 
+    }
 
+    IEnumerator TimeAddAnimation(float bonus)
+    {
+        rectTransform.localScale *= bonus+timeAddScaleUp;
+        yield return new WaitForSeconds(timeAddDuration);
+        rectTransform.localScale = Vector2.one;
+    }
+    
+    
     void WinGame() { /* Escape anim, victory screen */ IsGameOver = true; }
 }

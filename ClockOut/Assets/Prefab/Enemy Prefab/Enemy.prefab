@@ -410,6 +410,7 @@ Transform:
   - {fileID: 5351646292556081902}
   - {fileID: 6560605773105687387}
   - {fileID: 6517655719759342147}
+  - {fileID: 5779740926407040369}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &2858237557714239314
@@ -475,6 +476,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   deathParticles: {fileID: 8725666467842601984, guid: f4ea670b0be5f014a9e9aa777d05ff18, type: 3}
+  hitParticles: {fileID: 8033520919743935698, guid: 9a238537f1926414a9e827a5ea0d3a25, type: 3}
+  hitPoint: {fileID: 5779740926407040369}
+  timerBonus: 100
 --- !u!114 &6904347513810543371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,6 +589,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &6087360534617119969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5779740926407040369}
+  m_Layer: 0
+  m_Name: hitpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5779740926407040369
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6087360534617119969}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4137540212215205230}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6139569982162732790
 GameObject:
   m_ObjectHideFlags: 0

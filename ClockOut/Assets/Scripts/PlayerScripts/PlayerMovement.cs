@@ -11,12 +11,15 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Variables")]
     [SerializeField] float baseSpeed = 5;
     [SerializeField] float attackMoveSpeed = 2.5f;
+    [SerializeField] float dashForce = 3f;
     private float currentSpeed;
     private Vector2 movement;
+    private Vector2 lastMoveDir;
     [SerializeField]private PlayerHitbox playerAttack;
     [SerializeField] private float attackMoveDuration = 0.10f;
     [SerializeField] private float secondaryMoveDuration = 0.10f;
-    
+    private Coroutine primarySpeedRoutine;
+    private Coroutine secondarySpeedRoutine;
     private bool canMove = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,17 +31,28 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         playerAttack.OnAttack += AttackSpeed;
-        playerAttack.OnSecondary += AttackSpeed;
+        playerAttack.OnSecondary += SecondarySpeed;
     }
 
     private void OnDisable()
     {
         playerAttack.OnAttack -= AttackSpeed; // Always unsubscribe!
-        playerAttack.OnSecondary += AttackSpeed;
+        playerAttack.OnSecondary += SecondarySpeed;
     }
     public void Move(InputAction.CallbackContext context)
     {
         movement = context.ReadValue<Vector2>();
+        if(movement != Vector2.zero)
+        {
+            lastMoveDir = movement;
+        }
+        
+    }
+
+    public void Dash(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        rb.AddForce(lastMoveDir * dashForce, ForceMode2D.Impulse);
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -53,11 +67,13 @@ public class PlayerMovement : MonoBehaviour
     }
     private void AttackSpeed()
     {
-        StartCoroutine(ChangeInSpeed(attackMoveDuration));
+        if (primarySpeedRoutine != null) StopCoroutine(primarySpeedRoutine);
+        primarySpeedRoutine = StartCoroutine(ChangeInSpeed(attackMoveDuration));
     }
     private void SecondarySpeed()
     {
-        StartCoroutine(ChangeInSpeed(secondaryMoveDuration));
+        if (secondarySpeedRoutine != null) StopCoroutine(secondarySpeedRoutine);
+        secondarySpeedRoutine = StartCoroutine(ChangeInSpeed(attackMoveDuration));
     }
 
 
