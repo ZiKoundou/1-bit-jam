@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         if(!canMove) return;
-        rb.linearVelocity = movement * currentSpeed;
+        rb.AddForce(movement * currentSpeed,ForceMode2D.Force);
     }
     private void AttackSpeed()
     {

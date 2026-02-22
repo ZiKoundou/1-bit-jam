@@ -5,10 +5,9 @@ public class EnemyAi : MonoBehaviour
 {
     public Transform player;
     private NavMeshAgent agent;
+    private Animator enemyAnimator;
     [SerializeField] private float attackRange = 2f; // distance at which enemy stops and attacks
     [SerializeField] private float attackCooldown = 1f;
-    [SerializeField] private float damage = 1f;
-    [SerializeField] private float knockbackForce = 10f;
     private float lastAttackTime;
     public bool stop = false;
     float distance;
@@ -19,7 +18,7 @@ public class EnemyAi : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        
+        enemyAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -59,7 +58,9 @@ public class EnemyAi : MonoBehaviour
 
     void Attack()
     {
-        player.GetComponent<Health>().TakeDamage(damage);
+        //trigger attack animator thing
+        enemyAnimator.SetTrigger("Attack");
+        //player.GetComponent<Health>().TakeDamage(damage);
         // player.GetComponent<Knockback>().ApplyKnockback(transform.position,knockbackForce);
     }
     
