@@ -9,7 +9,8 @@ public class Health : MonoBehaviour
     [SerializeField] public float maxHealth = 100f;
     [SerializeField] public float currentHealth;
     [SerializeField] private float iFrameDuration = 0.5f;
-    private bool isInvincible;
+    private SpriteRenderer sprite;
+    public bool isInvincible { get; private set; } = false;
     #region Events
     public event Action OnDamaged;
     public event Action OnHealed;
@@ -18,6 +19,7 @@ public class Health : MonoBehaviour
     private void Awake()
     {
         currentHealth = maxHealth;
+        sprite = GetComponentInChildren<SpriteRenderer>();
     }
     #region Methods
     
@@ -39,7 +41,24 @@ public class Health : MonoBehaviour
     IEnumerator Invincibility()
     {
         isInvincible = true;
-        yield return new WaitForSeconds(iFrameDuration);
+        // Optional: visual feedback (very helpful for debugging)
+        
+        if (sprite != null)
+        {
+            float flashInterval = 0.1f;
+            float timer = 0f;
+            while (timer < iFrameDuration)
+            {
+                sprite.enabled = !sprite.enabled;
+                yield return new WaitForSeconds(flashInterval);
+                timer += flashInterval;
+            }
+            sprite.enabled = true; // make sure it's visible at end
+        }
+        else
+        {
+            yield return new WaitForSeconds(iFrameDuration);
+        }
         isInvincible = false;
     }
     public void Heal(float amount)

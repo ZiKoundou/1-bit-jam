@@ -37,20 +37,20 @@ public class EnemyAttackHitbox : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Apply damage
+
+
+            // Optional knockback
+            var kb = other.GetComponent<Knockback>();
+            if (kb != null)
+            {
+                kb.ApplyKnockback(transform.position,knockbackForce);
+            }
+            
             var health = other.GetComponent<Health>();  // or PlayerHealth
             if (health != null)
             {
                 health.TakeDamage(damage);
             }
-
-            // Optional knockback
-            var rb = other.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                Vector2 direction = (other.transform.position - transform.position).normalized;
-                rb.AddForce(direction * knockbackForce, ForceMode2D.Impulse);
-            }
-
             // Optional: only hit once per attack (add bool hasHitThisAttack, reset on DisableAttack)
         }
     }

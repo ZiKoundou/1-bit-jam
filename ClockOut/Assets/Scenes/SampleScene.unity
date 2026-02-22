@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackHitbox
   damage: 1
-  knockbackForce: 50
+  knockbackForce: 25
   boxCollider: {fileID: 0}
   isSecondaryAttack: 0
 --- !u!1 &346578631
@@ -1358,7 +1358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3812f7b731852c46a3047439675677b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  baseSpeed: 200
+  baseSpeed: 150
   attackMoveSpeed: 2.5
   playerAttack: {fileID: 925398128}
   attackMoveDuration: 0.1
@@ -1517,7 +1517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 10
   currentHealth: 0
-  iFrameDuration: 0.5
+  iFrameDuration: 1
 --- !u!114 &925398131
 MonoBehaviour:
   m_ObjectHideFlags: 0

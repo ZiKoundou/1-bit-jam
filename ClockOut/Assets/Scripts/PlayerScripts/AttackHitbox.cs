@@ -18,9 +18,9 @@ public class AttackHitbox : MonoBehaviour
         var health = other.GetComponent<Health>();
         var knockback = other.GetComponent<Knockback>();
         if (health == null || knockback == null) return;
-        
-        bool enemyDied = health.TakeDamage(damage);  // ← Returns TRUE if died
         knockback.ApplyKnockback(transform.position, knockbackForce);  // or use player transform if needed
+        bool enemyDied = health.TakeDamage(damage);  // ← Returns TRUE if died
+       
         
         if (enemyDied && isSecondaryAttack)
         {
