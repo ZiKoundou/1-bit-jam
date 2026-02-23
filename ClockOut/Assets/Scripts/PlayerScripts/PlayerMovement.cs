@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private PlayerHitbox playerAttack;
     [SerializeField] private float attackMoveDuration = 0.10f;
     [SerializeField] private float secondaryMoveDuration = 0.10f;
+    [SerializeField] private GameObject dashEffect;
     private Coroutine primarySpeedRoutine;
     private Coroutine secondarySpeedRoutine;
     private bool canMove = true;

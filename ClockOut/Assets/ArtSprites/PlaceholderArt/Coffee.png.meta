@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 6b54173f771986f40a8e87284a093136
+guid: 73ec5c4d2e146724084413c62f8b6d85
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1163242401451503524
-    second: 1 bit assets_0
-  - first:
-      213: 8536396869197805655
-    second: 1 bit assets_1
-  - first:
-      213: 3803852451546250506
-    second: 1 bit assets_2
-  - first:
-      213: -69170837179730143
-    second: 1 bit assets_3
+      213: -1850988681521255122
+    second: Coffee_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -55,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -84,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,33 +113,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 1 bit assets_0
+      name: Coffee_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 50
-        width: 26
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c509fc1f2355bdfe0800000000000000
-      internalID: -1163242401451503524
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1 bit assets_1
-      rect:
-        serializedVersion: 2
-        x: 33
-        y: 49
+        x: 1
+        y: 1
         width: 15
         height: 15
       alignment: 0
@@ -159,52 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 758ba4a89bf577670800000000000000
-      internalID: 8536396869197805655
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1 bit assets_2
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 47
-        width: 16
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a0db968a6aff9c430800000000000000
-      internalID: 3803852451546250506
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 1 bit assets_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 33
-        width: 16
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 127f5157d714a0ff0800000000000000
-      internalID: -69170837179730143
+      spriteID: e2d28a2e997ff46e0800000000000000
+      internalID: -1850988681521255122
       vertices: []
       indices: 
       edges: []
@@ -213,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -223,10 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      1 bit assets_0: -1163242401451503524
-      1 bit assets_1: 8536396869197805655
-      1 bit assets_2: 3803852451546250506
-      1 bit assets_3: -69170837179730143
+      Coffee_0: -1850988681521255122
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

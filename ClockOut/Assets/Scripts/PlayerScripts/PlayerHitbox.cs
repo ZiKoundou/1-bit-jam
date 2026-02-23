@@ -8,6 +8,7 @@ public class PlayerHitbox : MonoBehaviour
     [SerializeField] private AttackHitbox primaryHitbox;      // Primary attack hitbox
     [SerializeField] private AttackHitbox secondaryHitbox;     // Secondary attack hitbox
     [SerializeField] private float hitboxDuration;
+    [SerializeField] private Animator playerAnimator;
     
 
     [Header("Secondary Attack Cooldown")]
@@ -22,8 +23,8 @@ public class PlayerHitbox : MonoBehaviour
     {
         if (!context.performed) return;
         OnAttack?.Invoke();
-        
-        StartCoroutine(Melee(primaryHitbox.boxCollider, hitboxDuration));
+        playerAnimator.SetTrigger("Attack");
+        // StartCoroutine(Melee(primaryHitbox.boxCollider, hitboxDuration));
     }
 
     public void Secondary(InputAction.CallbackContext context)

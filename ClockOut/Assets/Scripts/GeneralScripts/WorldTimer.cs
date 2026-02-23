@@ -18,7 +18,15 @@ public class WorldTimer : MonoBehaviour
     [Header("Win and Lose state")]
     [SerializeField] private UI winScreen;
     [SerializeField] private UI loseScreen;
-    [SerializeField] private Health playerHealth;
+
+    private Coroutine currentScaleRoutine;           // ← NEW: track active animation
+    private Vector3 originalScale = Vector3.one;     // Cache starting scale
+
+    [Header("Time Add Animation")]
+    [SerializeField] private float maxScale = 1.6f;         // ← never bigger than this (e.g. 1.6 = 60% bigger)
+    [SerializeField] private float scalePerSecond = 0.15f;  // how much extra scale per game-second added
+    [SerializeField] private float animDuration = 0.4f;     // how long the pop lasts
+    [SerializeField] private AnimationCurve scaleCurve;     // optional: ease in/out (recommended)
     public static WorldTimer Instance;
 
     public bool IsGameOver { get; private set; }
@@ -28,12 +36,17 @@ public class WorldTimer : MonoBehaviour
     {
         Instance = this;
         timeProgress = 0f;
+        originalScale = rectTransform.localScale;   // usually (1,1,1)
     }
 
     // Update is called once per frame
     void Update()
     {
-        timeProgress += baseAdvanceRate * Time.deltaTime;
+        if(IsGameOver == false)
+        {
+            timeProgress += baseAdvanceRate * Time.deltaTime;
+        }
+        
         UpdateUI();
 
         if (timeProgress >= goalTimeMinutes)
@@ -60,14 +73,53 @@ public class WorldTimer : MonoBehaviour
     public void AdvanceTimer(float bonusSeconds)
     {
         timeProgress += bonusSeconds / 60f;
-        StartCoroutine(TimeAddAnimation(bonusSeconds/90f)); 
+        // Stop any running animation
+        if (currentScaleRoutine != null)
+        {
+            StopCoroutine(currentScaleRoutine);
+        }
+
+        // Start new one
+        currentScaleRoutine = StartCoroutine(TimeAddAnimation(bonusSeconds));
     }
 
-    IEnumerator TimeAddAnimation(float bonus)
+    IEnumerator TimeAddAnimation(float bonusSeconds)
     {
-        rectTransform.localScale *= bonus+timeAddScaleUp;
-        yield return new WaitForSeconds(timeAddDuration);
-        rectTransform.localScale = Vector2.one;
+        float extraScale = bonusSeconds/75 * scalePerSecond;           // bigger bonus = bigger pop
+        float targetScale = Mathf.Min(1f + extraScale, maxScale);  // clamp to max
+
+        float elapsed = 0f;
+
+        while (elapsed < animDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / animDuration;
+
+            // Optional: use curve for nicer easing (set in inspector: 0→1→0 or bounce)
+            float curveValue = scaleCurve != null ? scaleCurve.Evaluate(t) : t;
+
+            float currentExtra = Mathf.Lerp(0f, targetScale - 1f, curveValue);
+            rectTransform.localScale = originalScale * (1f + currentExtra);
+
+            yield return null;
+        }
+
+        // Smoothly return to normal
+        elapsed = 0f;
+        Vector3 startScale = rectTransform.localScale;
+
+        while (elapsed < animDuration * 0.7f) // slightly faster return
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / (animDuration * 0.7f);
+            float curveValue = scaleCurve != null ? scaleCurve.Evaluate(1f - t) : (1f - t);
+
+            rectTransform.localScale = Vector3.Lerp(startScale, originalScale, curveValue);
+            yield return null;
+        }
+
+        rectTransform.localScale = originalScale;
+        currentScaleRoutine = null;
     }
     
     

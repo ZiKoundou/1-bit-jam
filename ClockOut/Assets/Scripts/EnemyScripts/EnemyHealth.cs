@@ -7,8 +7,13 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] GameObject deathParticles;
     [SerializeField] GameObject hitParticles;
     [SerializeField] private Transform hitPoint;
+    private Animator enemyAnimator;
     public static event Action OnEnemyDied;
     public float timerBonus = 100;
+    void Start()
+    {
+        enemyAnimator = GetComponent<Animator>();
+    }
     void OnEnable()
     {
         health = GetComponentInParent<Health>();
@@ -24,6 +29,7 @@ public class EnemyHealth : MonoBehaviour
     public void HandleDamaged()
     {
         SpawnHitEffect();
+        enemyAnimator.SetTrigger("TakeDamage");
     }
     void SpawnHitEffect()
     {
