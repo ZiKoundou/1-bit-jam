@@ -95,6 +95,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   amount: 1800
+  collisionEffect: {fileID: 8725666467842601984, guid: f4ea670b0be5f014a9e9aa777d05ff18, type: 3}
+  FloatingTextPrefab: {fileID: 4735630917556109850, guid: c6dca5333167272498a9a52aa329d95f, type: 3}
 --- !u!95 &2073275604894141649
 Animator:
   serializedVersion: 7

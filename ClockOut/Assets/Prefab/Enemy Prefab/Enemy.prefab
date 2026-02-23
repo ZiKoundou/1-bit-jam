@@ -494,7 +494,7 @@ MonoBehaviour:
   maxHealth: 5
   currentHealth: 0
   iFrameDuration: 0
-  FloatingTextPrefab: {fileID: 4735630917556109850, guid: c6dca5333167272498a9a52aa329d95f, type: 3}
+  FloatingTextPrefab: {fileID: 4735630917556109850, guid: 2064bc4d473e26745b71fe04f256004e, type: 3}
 --- !u!61 &2334818852051249063
 BoxCollider2D:
   m_ObjectHideFlags: 0

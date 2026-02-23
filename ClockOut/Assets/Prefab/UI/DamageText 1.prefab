@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3794857527398401441}
   - component: {fileID: 2588569445664359832}
   m_Layer: 5
-  m_Name: DamageText
+  m_Name: DamageText 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &2588569445664359832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +250,7 @@ Animator:
   m_GameObject: {fileID: 5285385835342005101}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4f575614cd5878c429f06c4471561161, type: 2}
+  m_Controller: {fileID: 9100000, guid: 57cb0bb9a4565084ba53709e10c53b69, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

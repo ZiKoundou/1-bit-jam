@@ -4,16 +4,6 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     public static SceneController instance;
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject); // kill duplicates
-            return;
-        }
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
     
     public void LoadScene(string sceneName)
     {
