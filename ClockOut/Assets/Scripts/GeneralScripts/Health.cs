@@ -25,6 +25,7 @@ public class Health : MonoBehaviour
     
     public bool TakeDamage(float amount)
     {
+        if(WorldTimer.Instance.IsGameOver == true) return false;
         if (isInvincible) return false;
         if(amount <= 0) return false;
         currentHealth = Mathf.Max(currentHealth - amount, 0f);
@@ -66,11 +67,8 @@ public class Health : MonoBehaviour
         if(amount <= 0) return;
         currentHealth = Mathf.Min(currentHealth += amount, maxHealth);
         OnHealed?.Invoke();
-        
     }
 
-    
-    
     public void Die()
     {
         Debug.Log("invoking the death event");
@@ -78,4 +76,8 @@ public class Health : MonoBehaviour
     }
     #endregion
 
+    public void SetInvincible(bool condition)
+    {
+        isInvincible = condition;
+    }
 }

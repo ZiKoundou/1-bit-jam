@@ -33,6 +33,10 @@ public class EnemyAi : MonoBehaviour
     }
     void FollowAI()
     {
+        if(WorldTimer.Instance.IsGameOver == true){
+            agent.isStopped = true;
+            return;
+        }
         if(stop)return;
         distance = Vector3.Distance(player.position, transform.position);
         if (distance > attackRange){

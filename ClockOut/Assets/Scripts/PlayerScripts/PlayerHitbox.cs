@@ -22,6 +22,7 @@ public class PlayerHitbox : MonoBehaviour
     {
         if (!context.performed) return;
         OnAttack?.Invoke();
+        
         StartCoroutine(Melee(primaryHitbox.boxCollider, hitboxDuration));
     }
 
@@ -38,6 +39,7 @@ public class PlayerHitbox : MonoBehaviour
 
     IEnumerator Melee(BoxCollider2D collider, float duration)
     {
+        
         collider.enabled = true;
         yield return new WaitForSeconds(duration);
         collider.enabled = false;

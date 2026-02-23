@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Move(InputAction.CallbackContext context)
     {
+        
         movement = context.ReadValue<Vector2>();
         if(movement != Vector2.zero)
         {
@@ -62,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
+        if(WorldTimer.Instance.IsGameOver == true) return;
         if(!canMove) return;
         rb.AddForce(movement * currentSpeed,ForceMode2D.Force);
     }

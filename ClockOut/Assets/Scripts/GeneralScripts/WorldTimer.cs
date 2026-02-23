@@ -15,9 +15,14 @@ public class WorldTimer : MonoBehaviour
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private float timeAddDuration = 1;
     [SerializeField] private float timeAddScaleUp = 0.2f;
+    [Header("Win and Lose state")]
+    [SerializeField] private UI winScreen;
+    [SerializeField] private UI loseScreen;
+    [SerializeField] private Health playerHealth;
     public static WorldTimer Instance;
-    private float currentTimeMinutes;
+
     public bool IsGameOver { get; private set; }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -66,5 +71,14 @@ public class WorldTimer : MonoBehaviour
     }
     
     
-    void WinGame() { /* Escape anim, victory screen */ IsGameOver = true; }
+    void WinGame() { 
+        /* Escape anim, victory screen */ IsGameOver = true; 
+        winScreen.OpenWindow(winScreen.gameObject);
+        
+    }
+    public void LoseGame() { 
+        /* Escape anim, victory screen */ IsGameOver = true; 
+        loseScreen.OpenWindow(loseScreen.gameObject);
+    }
+
 }

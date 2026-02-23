@@ -320,12 +320,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WorldTimer
   baseAdvanceRate: 1
   startingTimeMinutes: 540
-  goalTimeMinutes: 480
+  goalTimeMinutes: 10
   timeText: {fileID: 889631963}
   progressBar: {fileID: 669304857}
   rectTransform: {fileID: 889631962}
   timeAddDuration: 0.25
   timeAddScaleUp: 0.2
+  winScreen: {fileID: 168516687}
+  loseScreen: {fileID: 2071638301}
 --- !u!1 &140493300
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 168516685}
   - component: {fileID: 168516686}
+  - component: {fileID: 168516687}
   m_Layer: 0
   m_Name: Win Screen
   m_TagString: Untagged
@@ -446,6 +449,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &168516687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168516684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77fd9ebb49e736f4eb2dba53a669fac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI
+  TutorialWindow: {fileID: 0}
 --- !u!1 &187584890
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,6 +632,37 @@ MonoBehaviour:
   knockbackForce: 30
   boxCollider: {fileID: 0}
   isSecondaryAttack: 0
+--- !u!1 &246486518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 246486519}
+  m_Layer: 0
+  m_Name: HitPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &246486519
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246486518}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 925398124}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &346578631
 GameObject:
   m_ObjectHideFlags: 0
@@ -2394,6 +2441,7 @@ GameObject:
   - component: {fileID: 925398129}
   - component: {fileID: 925398130}
   - component: {fileID: 925398131}
+  - component: {fileID: 925398132}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2419,6 +2467,7 @@ Transform:
   - {fileID: 1448528112}
   - {fileID: 2028344959}
   - {fileID: 573584785}
+  - {fileID: 246486519}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &925398125
@@ -2649,6 +2698,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a6ecf26b9c67c449b85f5acfc2b991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Knockback
+--- !u!114 &925398132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925398122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64ab5ec3c5d663f4d95d4f22af165854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  deathParticles: {fileID: 8033520919743935698, guid: 9a238537f1926414a9e827a5ea0d3a25, type: 3}
+  hitParticles: {fileID: 8033520919743935698, guid: 9a238537f1926414a9e827a5ea0d3a25, type: 3}
+  hitPoint: {fileID: 246486519}
 --- !u!1 &930057380
 GameObject:
   m_ObjectHideFlags: 0
@@ -4644,6 +4708,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2071638299}
   - component: {fileID: 2071638300}
+  - component: {fileID: 2071638301}
   m_Layer: 0
   m_Name: Lose Screen
   m_TagString: Untagged
@@ -4683,6 +4748,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &2071638301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071638298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77fd9ebb49e736f4eb2dba53a669fac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI
+  TutorialWindow: {fileID: 0}
 --- !u!1 &2119389392
 GameObject:
   m_ObjectHideFlags: 0
