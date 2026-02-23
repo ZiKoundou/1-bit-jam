@@ -28,6 +28,7 @@ public class EnemyHealth : MonoBehaviour
     }
     public void HandleDamaged()
     {
+        TimeManipulator.Instance.HitStop();
         SpawnHitEffect();
         enemyAnimator.SetTrigger("TakeDamage");
     }

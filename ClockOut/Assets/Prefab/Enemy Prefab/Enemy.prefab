@@ -381,7 +381,6 @@ GameObject:
   - component: {fileID: 4137540212215205230}
   - component: {fileID: 2858237557714239314}
   - component: {fileID: 2720848301175393526}
-  - component: {fileID: 5434069979170165194}
   - component: {fileID: 8988594544900284491}
   - component: {fileID: 6904347513810543371}
   - component: {fileID: 2334818852051249063}
@@ -404,7 +403,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5351646292556081902}
@@ -423,7 +422,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 7
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -448,21 +447,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAi
   player: {fileID: 0}
-  attackRange: 2
+  attackRange: 4
   attackCooldown: 1
   stop: 0
---- !u!114 &5434069979170165194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5951124308907903615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7a6ecf26b9c67c449b85f5acfc2b991, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Knockback
 --- !u!114 &8988594544900284491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,7 +465,7 @@ MonoBehaviour:
   deathParticles: {fileID: 8725666467842601984, guid: f4ea670b0be5f014a9e9aa777d05ff18, type: 3}
   hitParticles: {fileID: 8033520919743935698, guid: 9a238537f1926414a9e827a5ea0d3a25, type: 3}
   hitPoint: {fileID: 5779740926407040369}
-  timerBonus: 100
+  timerBonus: 1800
 --- !u!114 &6904347513810543371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14b55d6fb64ad13488b4de0f6dc94708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHealth: 5
+  maxHealth: 50
   currentHealth: 0
   iFrameDuration: 0
   FloatingTextPrefab: {fileID: 4735630917556109850, guid: 2064bc4d473e26745b71fe04f256004e, type: 3}
@@ -788,7 +775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackHitbox
   damage: 1
-  knockbackForce: 70
+  knockbackForce: 140
 --- !u!1 &7840240541220443523
 GameObject:
   m_ObjectHideFlags: 0
