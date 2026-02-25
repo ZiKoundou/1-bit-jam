@@ -52,7 +52,7 @@ public class EnemySpawner : MonoBehaviour
                     //spawn warning particle effect before enemy spawns
                     Instantiate(particle, spawnPoint);
                     //wait for a bit
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(2f);
                     //spawn the enemy at that spawn point
                     Instantiate(waves[i].enemies[j].enemy, spawnPoint);
                     yield return new WaitForSeconds(waves[i].enemies[j].timeBetweenSpawns);
