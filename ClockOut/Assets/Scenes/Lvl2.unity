@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530cd9e594ee64b47b4cdeb1637b32ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimeManipulator
-  defaultHitStopDuration: 0
+  defaultHitStopDuration: 0.05
   slowMoMultiplier: 0.3
   defaultSlowMoDuration: 0.5
 --- !u!4 &38903909
@@ -3528,8 +3528,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraMouseOffset
   player: {fileID: 925398124}
-  maxOffset: 1
-  smoothSpeed: 50
+  maxOffset: 3
+  smoothSpeed: 100
 --- !u!1 &765665197
 GameObject:
   m_ObjectHideFlags: 0
@@ -4272,7 +4272,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -4289,7 +4289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   baseSpeed: 175
-  attackMoveSpeed: 75
+  attackMoveSpeed: 100
   dashForce: 75
   playerAttack: {fileID: 925398128}
   attackMoveDuration: 0.2
@@ -4402,6 +4402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHitbox
   primaryHitbox: {fileID: 187584895}
+  primaryBoost: 30
   secondaryHitbox: {fileID: 1448528108}
   hitboxDuration: 0.15
   playerAnimator: {fileID: 925398133}
@@ -111502,6 +111503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1797680436}
   - component: {fileID: 1797680437}
+  - component: {fileID: 1797680438}
   m_Layer: 0
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -111583,6 +111585,28 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!95 &1797680438
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797680435}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1826311160
 GameObject:
   m_ObjectHideFlags: 0

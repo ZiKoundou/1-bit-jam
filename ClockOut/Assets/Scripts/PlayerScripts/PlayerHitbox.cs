@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerHitbox : MonoBehaviour
 {
     [SerializeField] private AttackHitbox primaryHitbox;      // Primary attack hitbox
+    [SerializeField] private float primaryBoost = 1.1f;
     [SerializeField] private AttackHitbox secondaryHitbox;     // Secondary attack hitbox
     [SerializeField] private float hitboxDuration;
     [SerializeField] private Animator playerAnimator;
@@ -16,14 +17,20 @@ public class PlayerHitbox : MonoBehaviour
 
     public event Action OnAttack;
     public event Action OnSecondary;
-
+    FollowMouse followMouse;
+    Rigidbody2D rb;
     private float lastSecondaryAttackTime;
-
+    void Start()
+    {
+        followMouse = GetComponentInChildren<FollowMouse>();
+        rb = GetComponent<Rigidbody2D>();
+    }
     public void Fire(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         OnAttack?.Invoke();
         playerAnimator.SetTrigger("Attack");
+        rb.AddForce(followMouse.GetMouseDir() * primaryBoost, ForceMode2D.Impulse);
         // StartCoroutine(Melee(primaryHitbox.boxCollider, hitboxDuration));
     }
 

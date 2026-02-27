@@ -61,7 +61,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
     }
-
     void Move()
     {
         if(WorldTimer.Instance.IsGameOver == true) return;

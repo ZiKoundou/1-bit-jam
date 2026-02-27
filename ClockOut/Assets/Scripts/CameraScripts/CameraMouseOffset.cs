@@ -20,7 +20,7 @@ public class CameraMouseOffset : MonoBehaviour
         Vector3 offset = Vector3.ClampMagnitude(direction, maxOffset);
 
         Vector3 targetPos = player.position + offset;
-
+        
         transform.position = Vector3.Lerp(
             transform.position,
             targetPos,

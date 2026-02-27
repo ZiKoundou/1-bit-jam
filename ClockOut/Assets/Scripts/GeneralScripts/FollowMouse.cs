@@ -20,7 +20,7 @@ public class FollowMouse : MonoBehaviour
         return mouseWorldPos;
     }
 
-    Vector2 GetMouseDir()
+    public Vector2 GetMouseDir()
     {
         Vector2 direction = (GetMousePos() - centerPoint.transform.position).normalized;
         return direction * distance;
